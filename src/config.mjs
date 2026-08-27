@@ -43,16 +43,16 @@ function normalizeBaseUrl(value, label, allowInsecure) {
   return url;
 }
 
-// function validateTokenHashes(tokenHashes) {
-//   for (const [principal, digest] of Object.entries(tokenHashes)) {
-//     if (!principal || principal.length > 100) {
-//       throw new Error('Gateway token principal IDs must contain 1 to 100 characters');
-//     }
-//     if (typeof digest !== 'string' || !/^[a-f0-9]{64}$/i.test(digest)) {
-//       throw new Error(`Gateway token hash for ${principal} must be a 64-character SHA-256 hex digest`);
-//     }
-//   }
-// }
+function validateTokenHashes(tokenHashes) {
+  for (const [principal, digest] of Object.entries(tokenHashes)) {
+    if (!principal || principal.length > 100) {
+      throw new Error('Gateway token principal IDs must contain 1 to 100 characters');
+    }
+    if (typeof digest !== 'string' || !/^[a-f0-9]{64}$/i.test(digest)) {
+      throw new Error(`Gateway token hash for ${principal} must be a 64-character SHA-256 hex digest`);
+    }
+  }
+}
 
 export function loadConfig(env = process.env) {
   const allowInsecure = parseBoolean(env.ALLOW_INSECURE_UPSTREAM, false);
@@ -80,12 +80,12 @@ export function loadConfig(env = process.env) {
     ? normalizeBaseUrl(env.AUDIT_WEBHOOK_URL, 'AUDIT_WEBHOOK_URL', allowInsecure)
     : null;
 
-  // const tokenHashes = parseJsonEnvironment(
-  //   env.GATEWAY_TOKEN_HASHES_JSON,
-  //   'GATEWAY_TOKEN_HASHES_JSON',
-  //   {},
-  // );
-  // validateTokenHashes(tokenHashes);
+  const tokenHashes = parseJsonEnvironment(
+    env.GATEWAY_TOKEN_HASHES_JSON,
+    'GATEWAY_TOKEN_HASHES_JSON',
+    {},
+  );
+  validateTokenHashes(tokenHashes);
 
   const configuredHosts = (env.UPSTREAM_TARBALL_HOSTS ?? upstreamRegistry.host)
     .split(',')
