@@ -16,5 +16,8 @@
     "report-lockfile": "node scripts/report-lockfile.mjs",
     "company-npm": "node scripts/company-npm.mjs"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "rollup": "^4.63.0"
+  }
 }
