@@ -7,7 +7,7 @@ function bearerToken(request) {
 }
 
 export function authenticate(request, config) {
-  if (config.allowAnonymous) {
+  if (config.authMode === 'none' || config.allowAnonymous) {
     return { ok: true, principal: 'anonymous' };
   }
 

@@ -62,6 +62,10 @@ The project has no third-party runtime dependencies.
    UPSTREAM_TARBALL_HOSTS=registry.npmjs.org
    ```
 
+For a controlled temporary deployment without gateway tokens, set
+`AUTH_MODE=none` and omit `GATEWAY_TOKEN_HASHES_JSON`. This mode is intentionally
+not the default and should not be used on a public production deployment.
+
 6. Deploy, then confirm the endpoint:
 
    ```bash

@@ -80,12 +80,14 @@ export function loadConfig(env = process.env) {
     ? normalizeBaseUrl(env.AUDIT_WEBHOOK_URL, 'AUDIT_WEBHOOK_URL', allowInsecure)
     : null;
 
-  const tokenHashes = parseJsonEnvironment(
-    env.GATEWAY_TOKEN_HASHES_JSON,
-    'GATEWAY_TOKEN_HASHES_JSON',
-    {},
-  );
-  validateTokenHashes(tokenHashes);
+  const authMode = env.AUTH_MODE ?? (parseBoolean(env.ALLOW_ANONYMOUS, false) ? 'none' : 'token');
+  if (!['token', 'none'].includes(authMode)) {
+    throw new Error('AUTH_MODE must be token or none');
+  }
+  const tokenHashes = authMode === 'token'
+    ? parseJsonEnvironment(env.GATEWAY_TOKEN_HASHES_JSON, 'GATEWAY_TOKEN_HASHES_JSON', {})
+    : {};
+  if (authMode === 'token') validateTokenHashes(tokenHashes);
 
   const configuredHosts = (env.UPSTREAM_TARBALL_HOSTS ?? upstreamRegistry.host)
     .split(',')
@@ -104,7 +106,8 @@ export function loadConfig(env = process.env) {
     isVercel: Boolean(env.VERCEL),
     allowInsecure,
     tokenHashes,
-    allowAnonymous: parseBoolean(env.ALLOW_ANONYMOUS, false),
+    authMode,
+    allowAnonymous: authMode === 'none',
     auditWebhookUrl,
     auditWebhookSecret: env.AUDIT_WEBHOOK_SECRET ?? '',
     auditIpSalt: env.AUDIT_IP_SALT ?? '',
