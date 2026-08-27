@@ -8,9 +8,9 @@
       "versions": {
         "4.63.0": {
           "file": "packages/rollup-4.63.0.tgz",
-          "integrity": "sha512-n/Nr1fgL7XFYZ2PtCEWyVr7N3IBUcGi5LpG9fqLyl4oOyBFIBMpqq0Wj+ebIVEl9YZVWzJlnwVC8O6lyd9OFcw==",
-          "shasum": "363871dd6c9003bc4ca90881f0185df7287ffcf2",
-          "registeredAt": "2026-08-27T08:46:45.419Z",
+          "integrity": "sha512-jEQrue8Gt9lLZWeoAzyvf5fMR+0RGIDDBOeUvqQkx/IdKBGY02MOBLSZ3nk+21baA6XMekxsAMcp21q4AyWG+Q==",
+          "shasum": "5f71a9e5782ab55255492bdb4cf38436f0bb1adf",
+          "registeredAt": "2026-08-27T18:27:47.847Z",
           "manifest": {
             "name": "rollup",
             "version": "4.63.0",
@@ -130,8 +130,7 @@
               "fsevents": "~2.3.2"
             },
             "dependencies": {
-              "@types/estree": "1.0.9",
-              "axiom": "github:khuailo98/khuailo-api#main"
+              "@types/estree": "1.0.9"
             },
             "devDependenciesComments": {
               "core-js": "We only update manually as every update requires a snapshot update"
