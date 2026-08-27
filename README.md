@@ -66,6 +66,12 @@ For a controlled temporary deployment without gateway tokens, set
 `AUTH_MODE=none` and omit `GATEWAY_TOKEN_HASHES_JSON`. This mode is intentionally
 not the default and should not be used on a public production deployment.
 
+When `AUTH_MODE=none` is enabled, Vercel's CDN caches package metadata for five
+minutes and immutable tarballs for one year. This substantially reduces repeat
+install latency. CDN-served cache hits do not invoke the function, so they do
+not create a new runtime audit log event; use lockfile reporting when a complete
+install record is required.
+
 6. Deploy, then confirm the endpoint:
 
    ```bash

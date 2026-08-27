@@ -148,6 +148,25 @@ function tarballUrl(origin, packageName, version) {
   return `${origin}/-/tarballs/${packageToken}/${encodeURIComponent(version)}.tgz`;
 }
 
+function cacheHeaders(config, resource) {
+  if (config.authMode !== 'none' && !config.allowAnonymous) {
+    return {
+      cacheControl: 'private, no-store',
+      cdnCacheControl: 'private, no-store',
+    };
+  }
+  if (resource === 'tarball') {
+    return {
+      cacheControl: 'public, max-age=31536000, immutable',
+      cdnCacheControl: 'public, s-maxage=31536000, immutable',
+    };
+  }
+  return {
+    cacheControl: 'public, max-age=0, must-revalidate',
+    cdnCacheControl: 'public, s-maxage=300, stale-while-revalidate=86400',
+  };
+}
+
 function chooseLatest(config, packageName, versions, upstreamTags, customTags) {
   if (customTags?.latest && versions[customTags.latest]) return customTags.latest;
   if (upstreamTags?.latest && versions[upstreamTags.latest]) return upstreamTags.latest;
@@ -240,7 +259,9 @@ async function serveMetadata(config, fetchImpl, audit, request, response, princi
   response.statusCode = 200;
   response.setHeader('content-type', 'application/json; charset=utf-8');
   response.setHeader('content-length', String(body.length));
-  response.setHeader('cache-control', 'private, no-store');
+  const metadataCache = cacheHeaders(config, 'metadata');
+  response.setHeader('cache-control', metadataCache.cacheControl);
+  response.setHeader('cdn-cache-control', metadataCache.cdnCacheControl);
   response.setHeader('etag', etag);
   response.end(request.method === 'HEAD' ? undefined : body);
 
@@ -303,7 +324,9 @@ async function serveCustomTarball(config, audit, request, response, principal, c
   response.statusCode = 200;
   response.setHeader('content-type', 'application/octet-stream');
   response.setHeader('content-length', String(stats.size));
-  response.setHeader('cache-control', 'private, no-store');
+  const tarballCache = cacheHeaders(config, 'tarball');
+  response.setHeader('cache-control', tarballCache.cacheControl);
+  response.setHeader('cdn-cache-control', tarballCache.cdnCacheControl);
   response.setHeader('x-content-type-options', 'nosniff');
   response.setHeader('etag', `\"${customVersion.shasum}\"`);
   if (request.method === 'HEAD') {
@@ -345,7 +368,9 @@ async function serveUpstreamTarball(config, fetchImpl, audit, request, response,
   }
 
   response.statusCode = upstream.status;
-  copyResponseHeaders(upstream, response);
+  const tarballCache = cacheHeaders(config, 'tarball');
+  copyResponseHeaders(upstream, response, tarballCache.cacheControl);
+  response.setHeader('cdn-cache-control', tarballCache.cdnCacheControl);
   let transfer = { bytes: 0, integrityVerified: null };
   if (request.method === 'HEAD') {
     response.end();

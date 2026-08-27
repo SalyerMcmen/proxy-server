@@ -29,7 +29,7 @@ export async function readBody(request, maximumBytes = 1_000_000) {
   return Buffer.concat(chunks);
 }
 
-export function copyResponseHeaders(upstream, response) {
+export function copyResponseHeaders(upstream, response, cacheControl = 'private, no-store') {
   for (const name of [
     'content-type',
     'content-length',
@@ -41,7 +41,7 @@ export function copyResponseHeaders(upstream, response) {
     const value = upstream.headers.get(name);
     if (value) response.setHeader(name, value);
   }
-  response.setHeader('cache-control', 'private, no-store');
+  response.setHeader('cache-control', cacheControl);
   response.setHeader('x-content-type-options', 'nosniff');
 }
 
