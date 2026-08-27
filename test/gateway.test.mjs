@@ -96,6 +96,12 @@ test('proxies metadata and tarballs, rewrites URLs, verifies integrity, and audi
   const tarballResponse = await fetch(rewrittenTarball, { headers });
   assert.equal(tarballResponse.status, 200);
   assert.deepEqual(Buffer.from(await tarballResponse.arrayBuffer()), tarball);
+  const conventionalTarballResponse = await fetch(
+    `${gatewayBase}/demo-package/-/demo-package-1.0.0.tgz`,
+    { headers },
+  );
+  assert.equal(conventionalTarballResponse.status, 200);
+  assert.deepEqual(Buffer.from(await conventionalTarballResponse.arrayBuffer()), tarball);
   assert.equal(events.find((event) => event.action === 'package_metadata')?.principal, 'developer');
   const download = events.find((event) => event.action === 'tarball_download');
   assert.equal(download.version, '1.0.0');

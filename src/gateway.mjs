@@ -257,18 +257,37 @@ async function serveMetadata(config, fetchImpl, audit, request, response, princi
 
 function parseTarballRoute(pathValue) {
   const match = /^-\/tarballs\/([a-z0-9_-]+)\/([^/]+)\.tgz$/i.exec(pathValue);
-  if (!match) return null;
-  let packageName;
-  try {
-    packageName = Buffer.from(match[1], 'base64url').toString('utf8');
-  } catch {
-    throw new GatewayError(400, 'invalid_tarball_package_token');
+  if (match) {
+    let packageName;
+    try {
+      packageName = Buffer.from(match[1], 'base64url').toString('utf8');
+    } catch {
+      throw new GatewayError(400, 'invalid_tarball_package_token');
+    }
+    const version = safeDecode(match[2]);
+    if (!validPackageName(packageName) || !validVersion(version)) {
+      throw new GatewayError(400, 'invalid_tarball_identity');
+    }
+    return { packageName, version };
   }
-  const version = safeDecode(match[2]);
-  if (!validPackageName(packageName) || !validVersion(version)) {
-    throw new GatewayError(400, 'invalid_tarball_identity');
+
+  // npm lockfiles can contain the conventional registry URL
+  // <package>/-/<package>-<version>.tgz. Support it as well as the gateway's
+  // compact internal URL so existing lockfiles remain installable.
+  const segments = pathValue.split('/');
+  if (segments.length >= 3 && segments.at(-2) === '-') {
+    const packageName = segments.slice(0, -2).join('/');
+    const filename = segments.at(-1);
+    if (!filename.endsWith('.tgz') || !validPackageName(packageName)) return null;
+    const basename = filename.slice(0, -'.tgz'.length);
+    const packageLeaf = packageName.split('/').at(-1);
+    const prefix = `${packageLeaf}-`;
+    if (!basename.startsWith(prefix)) return null;
+    const version = safeDecode(basename.slice(prefix.length));
+    if (!validVersion(version)) throw new GatewayError(400, 'invalid_tarball_identity');
+    return { packageName, version };
   }
-  return { packageName, version };
+  return null;
 }
 
 async function serveCustomTarball(config, audit, request, response, principal, context, identity, customVersion) {
