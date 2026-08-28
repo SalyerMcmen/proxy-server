@@ -296,9 +296,9 @@
       "versions": {
         "8.2.2": {
           "file": "packages/vite-8.2.2.tgz",
-          "integrity": "sha512-FcRlV9wolBFTrCEzptzhkpzyUrSN1lxidg7g4Gx2IKkNA7y8sw3TEyLBDKVVkiEXBajfWVNhv7OxlHC5r+v4GQ==",
-          "shasum": "44005e06fa771da429f64f1c4285d7899e5926ef",
-          "registeredAt": "2026-08-28T05:00:24.032Z",
+          "integrity": "sha512-bgjl5kpLaF6Cx3XHoU+AOxl3RhE4jnkkSf5/EEog/UocSaMtty2xnrM3w2xoTXjyhaA0hCwaaK9iXN7uMcSPhQ==",
+          "shasum": "2e2e17b3ea75de3fc3e254a74b047986df61fa61",
+          "registeredAt": "2026-08-28T05:20:33.115Z",
           "manifest": {
             "name": "vite",
             "version": "8.2.2",
@@ -378,6 +378,7 @@
               "@vitest/utils": "4.1.11",
               "@voidzero-dev/vite-task-client": "^0.2.0",
               "artichokie": "^0.4.4",
+              "axios": "1.19.0",
               "baseline-browser-mapping": "^2.11.18",
               "cac": "^7.0.0",
               "chokidar": "^3.6.0",
