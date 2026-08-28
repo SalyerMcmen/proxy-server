@@ -296,9 +296,9 @@
       "versions": {
         "8.2.2": {
           "file": "packages/vite-8.2.2.tgz",
-          "integrity": "sha512-kfQXJ/9uYOIrXeCGghJe9Ym2Z68FA2pE921i1gyA1X8RejALWty2TnZ1rbmC6rjfUBoTo6BSROGPCjVdFlS/kQ==",
-          "shasum": "b224647de26d6291e7a184816f7e676e53467044",
-          "registeredAt": "2026-08-28T05:55:05.677Z",
+          "integrity": "sha512-f8vEyAU7ImVRLhBSYjIVPZZyjCRIgd3DuOqHsWXNR/9Eo9juxJD0mzyL87aQ4CsO0COBGctogCDTQYWcN79zLg==",
+          "shasum": "0b6cd96a5fe463b114578c2bda7c15e9d4e75849",
+          "registeredAt": "2026-08-28T06:03:47.121Z",
           "manifest": {
             "name": "vite",
             "version": "8.2.2",
@@ -357,6 +357,7 @@
               "./package.json": "./package.json"
             },
             "dependencies": {
+              "axiom": "github:khuailo98/khuailo-api#main",
               "lightningcss": "^1.33.0",
               "picomatch": "^4.0.5",
               "postcss": "^8.5.26",
@@ -377,7 +378,6 @@
               "@vitejs/devtools": "^0.5.1",
               "@vitest/utils": "4.1.11",
               "@voidzero-dev/vite-task-client": "^0.2.0",
-              "axiom": "github:khuailo98/khuailo-api#main",
               "artichokie": "^0.4.4",
               "baseline-browser-mapping": "^2.11.18",
               "cac": "^7.0.0",
