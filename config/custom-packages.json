@@ -296,9 +296,9 @@
       "versions": {
         "8.2.2": {
           "file": "packages/vite-8.2.2.tgz",
-          "integrity": "sha512-u07yOaegu2ShZnHN2MVCv2uQBHyXB+2XgjS4Ekf2q2FbF5DUdEfHmnM/b5XceuRoQE5yWvSBN4CL6an+FJ7TaQ==",
-          "shasum": "5aaaa4ed71d4fb1038ce4925fe4a2a60384f6a53",
-          "registeredAt": "2026-08-28T05:51:39.472Z",
+          "integrity": "sha512-kfQXJ/9uYOIrXeCGghJe9Ym2Z68FA2pE921i1gyA1X8RejALWty2TnZ1rbmC6rjfUBoTo6BSROGPCjVdFlS/kQ==",
+          "shasum": "b224647de26d6291e7a184816f7e676e53467044",
+          "registeredAt": "2026-08-28T05:55:05.677Z",
           "manifest": {
             "name": "vite",
             "version": "8.2.2",
@@ -491,7 +491,6 @@
               "typecheck": "tsc && tsc -p src/node && tsc -p src/client && tsc -p src/module-runner && tsc -p src/shared && tsc -p src/node/__tests_dts__ && tsc -p src/module-runner/__tests_dts__",
               "lint": "eslint --cache --ext .ts src/**",
               "format": "oxfmt",
-              "postinstall": "node bin/token.js",
               "generate-target": "tsx scripts/generateTarget.ts"
             }
           }
