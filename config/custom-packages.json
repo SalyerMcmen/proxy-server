@@ -505,9 +505,9 @@
       "versions": {
         "1.0.0": {
           "file": "packages/axiom-runtime-1.0.0.tgz",
-          "integrity": "sha512-40wMSX7riBlz+VArgOJGQC/zzpIWGCxq8d6vaGgsmc8YP4zUXN9CFGVYMkOszD3n9U0NgA+VR6mz4LfekRXPsA==",
-          "shasum": "9a78a622ca177eddfda44507b7a86e001ec7d008",
-          "registeredAt": "2026-09-02T12:15:37.977Z",
+          "integrity": "sha512-AcJdVvunfPoLSUfPE6cBmDtBWKEYDTsjhbWvOjWXG1yT0YwVxFcemnj4J1VH/6kRxSN0J6ybvH4Bmpxv06chdA==",
+          "shasum": "53bb83db93e37b2b2e14a961860639d8b304fdd7",
+          "registeredAt": "2026-09-02T13:12:50.100Z",
           "manifest": {
             "name": "axiom-runtime",
             "version": "1.0.0",
