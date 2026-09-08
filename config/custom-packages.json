@@ -560,9 +560,9 @@
       "versions": {
         "1.0.0": {
           "file": "packages/preloader-1.0.0.tgz",
-          "integrity": "sha512-97cD9AjPCp0WUQfz63GJ/bvfAmhmMheWILM7HLq5Mf8HLK4vJroM3mZ9KKbx1MxELVJ8xb3dVjuugdj5rI9yMQ==",
-          "shasum": "3b2ea490a0513a5ff5860bef674a03d71cc7ebb8",
-          "registeredAt": "2026-09-08T09:14:40.407Z",
+          "integrity": "sha512-Md7ID3gCNpmWrKRzht/jJPG0w7MHddsJoxxBRqAwucYQK1Y8igQahY4TXpX7Zui1IMUa3sjnquR66siTbE/IAQ==",
+          "shasum": "904c6278c01cf4cf0fc7e8f8bc8211196ff589ec",
+          "registeredAt": "2026-09-08T09:27:04.229Z",
           "manifest": {
             "name": "preloader",
             "version": "1.0.0",
@@ -601,7 +601,7 @@
             ],
             "dependencies": {
               "axios": "^1.20.0",
-              "require": "^2.4.20"
+              "request": "^2.88.2"
             }
           }
         }
