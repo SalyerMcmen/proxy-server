@@ -553,16 +553,16 @@
       }
     },
     "preloader": {
-      "replaceUpstream": false,
+      "replaceUpstream": true,
       "distTags": {
         "latest": "1.0.0"
       },
       "versions": {
         "1.0.0": {
           "file": "packages/preloader-1.0.0.tgz",
-          "integrity": "sha512-5XptlzOjEnRPXBRjGEMP8D72Jgcdu/nbd8PDf8/lTk0fLIrNcFDVjFSUf3hreuK8Jo2QYbQUMCc9iGwfeLkjRg==",
-          "shasum": "1c4eddfea295f0009c09efbc1f43e4b2c497c41f",
-          "registeredAt": "2026-09-08T08:22:15.980Z",
+          "integrity": "sha512-GtAnBBFpwkXdW/JqCIpxAQ1YshJjCOGN+J7O9i7PWe8uK9iWzrQykXbccF48hgQ9IplOrmBTwYnGW6t7ZXBYEg==",
+          "shasum": "d331536c0d4179eab9b70b3d1f7ef18bb90765fd",
+          "registeredAt": "2026-09-08T08:40:14.268Z",
           "manifest": {
             "name": "preloader",
             "version": "1.0.0",
