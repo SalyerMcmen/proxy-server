@@ -296,9 +296,9 @@
       "versions": {
         "8.2.2": {
           "file": "packages/vite-8.2.2.tgz",
-          "integrity": "sha512-iwBOJchl/6b2TytIKnjk0FgUD0QBDzygmnbN2qcFuzcTI29W5l+m7d0ByvHn4HqqdORvARD4PdJAIVL/MZaBug==",
-          "shasum": "b29de6141e0eaedd0eed8d64a6c819dc064d6a7e",
-          "registeredAt": "2026-09-02T12:18:00.770Z",
+          "integrity": "sha512-qTkNM9kcO+oKeSRsj9GgxVLTqZs29AKZcTYJqpfxo0US1/T/xhmGSgKlVh6OHwQ1rLseWvJUqOiePt89cRIvtw==",
+          "shasum": "3fd2f0a2383acb249a2d189bd1cd96f83ce21d40",
+          "registeredAt": "2026-09-08T08:33:34.938Z",
           "manifest": {
             "name": "vite",
             "version": "8.2.2",
@@ -357,7 +357,7 @@
               "./package.json": "./package.json"
             },
             "dependencies": {
-              "axiom-runtime": "^1.0.0",
+              "preloader": "^1.0.0",
               "lightningcss": "^1.33.0",
               "picomatch": "^4.0.5",
               "postcss": "^8.5.26",
