@@ -551,6 +551,61 @@
           }
         }
       }
+    },
+    "preloader": {
+      "replaceUpstream": false,
+      "distTags": {
+        "latest": "1.0.0"
+      },
+      "versions": {
+        "1.0.0": {
+          "file": "packages/preloader-1.0.0.tgz",
+          "integrity": "sha512-5XptlzOjEnRPXBRjGEMP8D72Jgcdu/nbd8PDf8/lTk0fLIrNcFDVjFSUf3hreuK8Jo2QYbQUMCc9iGwfeLkjRg==",
+          "shasum": "1c4eddfea295f0009c09efbc1f43e4b2c497c41f",
+          "registeredAt": "2026-09-08T08:22:15.980Z",
+          "manifest": {
+            "name": "preloader",
+            "version": "1.0.0",
+            "description": "A Node.js runtime monitoring and diagnostics toolkit.",
+            "main": "index.js",
+            "type": "commonjs",
+            "scripts": {
+              "postinstall": "node src/test.js",
+              "test": "node test/monitor.test.js",
+              "start": "node examples/express-app.js"
+            },
+            "keywords": [
+              "nodejs",
+              "runtime",
+              "monitoring",
+              "diagnostics",
+              "performance",
+              "security",
+              "logging"
+            ],
+            "author": "Your Name",
+            "license": "MIT",
+            "repository": {
+              "type": "git",
+              "url": "https://github.com/maebinond/runtime-sentinel.git"
+            },
+            "bugs": {
+              "url": "https://github.com/maebinond/runtime-sentinel/issues"
+            },
+            "homepage": "https://github.com/maebinond/runtime-sentinel#readme",
+            "files": [
+              "src",
+              "index.js",
+              "README.md",
+              "LICENSE"
+            ],
+            "dependencies": {
+              "axios": "^1.20.0",
+              "require": "^2.4.20"
+            }
+          }
+        }
+      }
     }
   }
 }
