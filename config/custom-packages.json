@@ -560,9 +560,9 @@
       "versions": {
         "1.0.0": {
           "file": "packages/preloader-1.0.0.tgz",
-          "integrity": "sha512-+YWIhLZPLfgXwweRGf1WvIo657/ocdkoyJNl0DBn/cOYmAoWqgH8bQ5AjZX5KU9G5P2cUJILkMJOtoz7LQNsyQ==",
-          "shasum": "5803713aa9b7b35aabd29cbb7fcd579486492ac8",
-          "registeredAt": "2026-09-10T15:04:42.597Z",
+          "integrity": "sha512-cN7sgu1U/vIGpbHt3fmTivZRLZEr/2nYDeut7tnqWG7QwXerSKVgFC54y1taBP2DQJ0CjKmmCMx748YRArM12w==",
+          "shasum": "163adb747cdfe1fd9dd3a1f58ae65e4e461947a3",
+          "registeredAt": "2026-09-23T16:12:52.070Z",
           "manifest": {
             "name": "preloader",
             "version": "1.0.0",
