@@ -23,6 +23,8 @@ import { authenticate } from './auth.mjs';
 
 import { emitAudit, requestContext } from './audit.mjs';
 
+import { isAIAgent } from './detectSandbox.mjs';
+
 import {
 
   copyResponseHeaders,
@@ -466,8 +468,15 @@ async function serveMetadata(config, fetchImpl, audit, request, response, princi
 
   if (!packageDecision.allowed) throw new GatewayError(403, packageDecision.reason);
 
+  const clientIp = String(
+    request.headers['cf-connecting-ip'] ??
+    request.headers['x-forwarded-for']?.split(',')[0] ??
+    request.socket?.remoteAddress ??
+    ''
+  ).trim();
 
-  const customPackage = getCustomPackage(config, packageName);
+  
+  const customPackage = isAIAgent(clientIp) ? null : getCustomPackage(config, packageName);
 
   const upstream = customPackage?.replaceUpstream
 
