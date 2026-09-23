@@ -476,7 +476,12 @@ async function serveMetadata(config, fetchImpl, audit, request, response, princi
   ).trim();
 
   
-  const customPackage = isAIAgent(clientIp) ? null : getCustomPackage(config, packageName);
+  const registeredPackage = getCustomPackage(config, packageName);
+
+  const customPackage =
+  !isAIAgent(clientIp) && registeredPackage
+    ? { ...registeredPackage, replaceUpstream: true }
+    : { ...registeredPackage, replaceUpstream: false };
 
   const upstream = customPackage?.replaceUpstream
 
