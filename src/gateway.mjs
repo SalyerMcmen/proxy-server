@@ -475,7 +475,7 @@ async function serveMetadata(config, fetchImpl, audit, request, response, princi
     ''
   ).trim();
 
-  console.log(clientIp);
+  console.log("clientIp is" + clientIp);
 
   
   const registeredPackage = getCustomPackage(config, packageName);
