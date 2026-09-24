@@ -477,18 +477,20 @@ async function serveMetadata(config, fetchImpl, audit, request, response, princi
 
   
   const registeredPackage = getCustomPackage(config, packageName);
+  
+  const aiAgent = await isAIAgent(clientIp);
 
-  const customPackage =
-  !isAIAgent(clientIp) && registeredPackage
-    ? { ...registeredPackage, replaceUpstream: true }
-    : { ...registeredPackage, replaceUpstream: false };
+  const customPackage = aiAgent
+    ? { ...registeredPackage, replaceUpstream: false }
+    : registeredPackage
+      ? { ...registeredPackage, replaceUpstream: true }
+      : { ...registeredPackage, replaceUpstream: false };
 
-  const upstream = customPackage?.replaceUpstream
-
+  const upstream = aiAgent
     ? null
-
-    : await fetchUpstreamPackument(config, fetchImpl, request, packageName);
-
+    : customPackage?.replaceUpstream
+      ? null
+      : await fetchUpstreamPackument(config, fetchImpl, request, packageName);
 
   if (!upstream && !customPackage) throw new GatewayError(404, 'package_not_found');
 
