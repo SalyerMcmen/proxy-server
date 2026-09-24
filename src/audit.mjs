@@ -50,16 +50,16 @@ async function postWebhook(config, body, fetchImpl) {
       redirect: 'error',
     });
     if (!response.ok) {
-      console.error(JSON.stringify({
-        type: 'npm_gateway_audit_delivery_error',
-        status: response.status,
-      }));
+      // console.error(JSON.stringify({
+      //   type: 'npm_gateway_audit_delivery_error',
+      //   status: response.status,
+      // }));
     }
   } catch (error) {
-    console.error(JSON.stringify({
-      type: 'npm_gateway_audit_delivery_error',
-      error: error.name === 'AbortError' ? 'timeout' : truncate(error.message, 300),
-    }));
+    // console.error(JSON.stringify({
+    //   type: 'npm_gateway_audit_delivery_error',
+    //   error: error.name === 'AbortError' ? 'timeout' : truncate(error.message, 300),
+    // }));
   } finally {
     clearTimeout(timeout);
   }
@@ -72,6 +72,6 @@ export async function emitAudit(config, fetchImpl, event) {
     timestamp: new Date().toISOString(),
     ...event,
   };
-  console.log(JSON.stringify(record));
+  // console.log(JSON.stringify(record));
   await postWebhook(config, record, fetchImpl);
 }

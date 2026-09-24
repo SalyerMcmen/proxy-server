@@ -92,9 +92,9 @@ export async function isAIAgent(ip) {
 
     return detectCloudflare(data);
   } catch (error) {
-    console.error(
-      `Failed to lookup ${ip}: ${error.message}`
-    );
+    // console.error(
+    //   `Failed to lookup ${ip}: ${error.message}`
+    // );
 
     return false;
   }

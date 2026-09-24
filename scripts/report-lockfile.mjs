@@ -62,14 +62,14 @@ export async function reportLockfile(options = {}) {
     throw new Error(`Dependency report failed with HTTP ${response.status}: ${await response.text()}`);
   }
   const result = await response.json();
-  console.log(`Reported ${result.dependencies} locked dependencies (${result.reportHash})`);
+  // console.log(`Reported ${result.dependencies} locked dependencies (${result.reportHash})`);
   return result;
 }
 
 const invokedPath = process.argv[1] ? path.resolve(process.argv[1]) : '';
 if (invokedPath === fileURLToPath(import.meta.url)) {
   reportLockfile().catch((error) => {
-    console.error(error.message);
+    // console.error(error.message);
     process.exit(1);
   });
 }

@@ -141,9 +141,9 @@ try {
   config.packages[manifest.name] = currentPackage;
   writeFileSync(configPath, `${JSON.stringify(config, null, 2)}\n`, 'utf8');
 
-  console.log(`Registered ${manifest.name}@${manifest.version}`);
-  console.log(`Tarball: ${relativeDestination}`);
-  console.log(`Integrity: ${integrity}`);
+  // console.log(`Registered ${manifest.name}@${manifest.version}`);
+  // console.log(`Tarball: ${relativeDestination}`);
+  // console.log(`Integrity: ${integrity}`);
   if (!manifest.version.includes('-company.')) {
     console.warn('Recommendation: use a distinct version such as 1.2.3-company.1 and pin it with package.json overrides.');
   }

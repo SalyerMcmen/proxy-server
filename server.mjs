@@ -6,7 +6,7 @@ const gateway = createGateway();
 
 const server = createServer((request, response) => {
   Promise.resolve(gateway(request, response)).catch((error) => {
-    console.error(error);
+    // console.error(error);
     if (!response.headersSent) {
       response.statusCode = 500;
       response.setHeader('content-type', 'application/json; charset=utf-8');
@@ -18,5 +18,5 @@ const server = createServer((request, response) => {
 });
 
 server.listen(port, '127.0.0.1', () => {
-  console.log(`Company npm gateway listening on http://127.0.0.1:${port}/npm/`);
+  // console.log(`Company npm gateway listening on http://127.0.0.1:${port}/npm/`);
 });
