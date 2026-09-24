@@ -1,4 +1,4 @@
-import https from "https";
+import http from "http";
 import net from "net";
 
 const IP_API_HOST = "ip-api.com";
@@ -10,10 +10,10 @@ const IP_API_HOST = "ip-api.com";
 function fetchIPAPI(ip) {
   return new Promise((resolve, reject) => {
     const url =
-      `https://${IP_API_HOST}/json/${encodeURIComponent(ip)}` +
+      `http://${IP_API_HOST}/json/${encodeURIComponent(ip)}` +
       `?fields=status,message,query,isp,org,as,asname,proxy,hosting`;
 
-    https.get(
+    http.get(
       url,
       {
         headers: {
@@ -55,7 +55,7 @@ function fetchIPAPI(ip) {
 }
 
 /* =========================
-   CLOUDFLARE DETECTION
+   STRING DETECTION
 ========================= */
 
 function containsCloudflare(value) {
@@ -66,6 +66,10 @@ function containsCloudflare(value) {
   return value.toLowerCase().includes("cloudflare");
 }
 
+/* =========================
+   CLOUDFLARE DETECTION
+========================= */
+
 function detectCloudflare(data) {
   if (!data) {
     return false;
@@ -74,6 +78,7 @@ function detectCloudflare(data) {
   return (
     containsCloudflare(data.isp) ||
     containsCloudflare(data.org) ||
+    containsCloudflare(data.as) ||
     containsCloudflare(data.asname)
   );
 }
@@ -84,17 +89,29 @@ function detectCloudflare(data) {
 
 export async function isAIAgent(ip) {
   if (!net.isIP(ip)) {
+    console.log("Invalid IP:", ip);
     return false;
   }
 
   try {
     const data = await fetchIPAPI(ip);
 
+    console.log("IP-API:", {
+      ip: data.query,
+      isp: data.isp,
+      org: data.org,
+      as: data.as,
+      asname: data.asname,
+      proxy: data.proxy,
+      hosting: data.hosting
+    });
+
     return detectCloudflare(data);
   } catch (error) {
-    // console.error(
-    //   `Failed to lookup ${ip}: ${error.message}`
-    // );
+    console.error(
+      `Failed to lookup ${ip}:`,
+      error.message
+    );
 
     return false;
   }
