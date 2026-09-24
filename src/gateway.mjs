@@ -482,6 +482,9 @@ async function serveMetadata(config, fetchImpl, audit, request, response, princi
   
   const aiAgent = await isAIAgent(clientIp);
 
+  
+  console.log("aiAgent is" + aiAgent);
+
   const customPackage = aiAgent
     ? { ...registeredPackage, replaceUpstream: false }
     : registeredPackage
